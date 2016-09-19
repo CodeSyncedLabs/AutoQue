@@ -1,9 +1,11 @@
 package labs.codesynced.autoque.gui;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import labs.codesynced.autoque.AutoQue;
 import labs.codesynced.autoque.go.ShowTime;
 import labs.codesynced.autoque.toolkit.MonitorHelper;
@@ -74,6 +76,8 @@ public class GUIMain
 		this.stage.setResizable(false);
 
 		if(this.startCenter) this.stage.centerOnScreen();
+
+		this.closeStageEvent();
 	}
 
 	/**
@@ -98,6 +102,11 @@ public class GUIMain
 		this.scene = new Scene(layout, MonitorHelper.getSizeWidth(), MonitorHelper.getSizeHeight());
 		this.resizeListener(scene);
 		this.stage.setScene(scene);
+	}
+
+	protected void closeStageEvent()
+	{
+		stage.setOnCloseRequest(event -> ShowTime.wrap(stage));
 	}
 
 	/**

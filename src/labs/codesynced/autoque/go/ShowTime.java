@@ -16,4 +16,26 @@ public class ShowTime
 		stage.show();
 	}
 
+	/**
+	 * Halt the show for a given amount of time
+	 * @param stage the stage to be halter
+	 * @param time the number of SECONDS it is to be halted
+	 */
+	public static void intermission(Stage stage, long time)
+	{
+		time *= 60;
+		try {
+			Thread.sleep(time);
+		} catch(InterruptedException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void wrap(Stage stage)
+	{
+		AutoQue.getLogger().info("That's a wrap!");
+		AutoQue.getLogger().info("Closing stage: " + stage.getTitle().substring(12));
+		stage.close();
+	}
+
 }
