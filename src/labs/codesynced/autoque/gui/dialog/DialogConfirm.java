@@ -8,11 +8,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 import labs.codesynced.autoque.AutoQue;
 import labs.codesynced.autoque.go.ShowTime;
 import labs.codesynced.autoque.toolkit.MonitorHelper;
-
+import labs.codesynced.autoque.toolkit.Resources;
 
 /**
  * @author Wylan Shoemaker - 9/18/2016
@@ -29,9 +30,9 @@ public class DialogConfirm
 	private AnchorPane anchorPane;
 	private Scene scene;
 
-	@FXML
+	//@FXML
 	private Button dialogYes, dialogNo;
-	@FXML
+	//@FXML
 	private Label dialogLabel;
 
 	public DialogConfirm(String dialog, String button0, String button1)
@@ -57,20 +58,31 @@ public class DialogConfirm
 	protected void setupStage() throws Exception
 	{
 		loader = new FXMLLoader();
-		loader.setLocation(AutoQue.class.getResource("/gui/layout/LayoutConfirmDialog"));
+		loader.setLocation(AutoQue.class.getResource(Resources.INTERNAL_GUI_PATH + "LayoutConfirmDialog.fxml"));
 
-		anchorPane = loader.load();
+		anchorPane = (AnchorPane) loader.load();
+
+		anchorPane.getChildren().add(dialogLabel);
+		anchorPane.getChildren().add(dialogYes);
+		anchorPane.getChildren().add(dialogNo);
 
 		this.scene = new Scene(anchorPane, MonitorHelper.getSizeWidth(), MonitorHelper.getSizeHeight());
 
 		this.stage = new Stage();
+		this.stage.initModality(Modality.APPLICATION_MODAL);
+		stage.setMaxWidth(250);
+		stage.setMaxHeight(100);
+		stage.setResizable(false);
 		stage.setTitle("Are you sure?");
 		stage.setAlwaysOnTop(true);
-
+		stage.showAndWait();
 	}
 
 	protected void setupButton()
 	{
+		dialogYes = new Button(button0);
+		dialogNo = new Button(button1);
+
 		dialogYes.setOnAction(new EventHandler<ActionEvent>()
 		{
 			@Override public void handle(ActionEvent event)
@@ -83,13 +95,14 @@ public class DialogConfirm
 		{
 			@Override public void handle(ActionEvent event)
 			{
-				stage.close();
+
 			}
 		});
 	}
 
 	protected void setupTextArea()
 	{
+		dialogLabel = new Label();
 		dialogLabel.setText("Are you sure?");
 	}
 

@@ -13,27 +13,27 @@
 
 <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-       <Button id="buttonGo" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="123.0" text="Go">
+       <Button id="buttonGo" fx:id="buttonGo" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" prefHeight="82.0" prefWidth="123.0" text="Go">
            <font>
                <Font name="Comfortaa Bold" size="45.0" />
            </font>
        </Button>
-       <Button id="buttonBack" layoutX="688.0" layoutY="14.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="98.0" text="Back">
+       <Button id="buttonBack" fx:id="buttonBack" layoutX="688.0" layoutY="14.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="98.0" text="Back">
            <font>
                <Font name="Comfortaa Bold" size="24.0" />
            </font>
        </Button>
-       <Button id="buttonPlay" layoutX="688.0" layoutY="70.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="98.0" text="Play">
+       <Button id="buttonPlay" fx:id="buttonPlay" layoutX="688.0" layoutY="80.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="98.0" text="Play">
            <font>
                <Font name="Comfortaa Bold" size="24.0" />
            </font>
        </Button>
-       <Button id="buttonStop" layoutX="581.0" layoutY="14.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="98.0" text="Stop">
+       <Button id="buttonStop" fx:id="buttonStop" layoutX="581.0" layoutY="14.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="98.0" text="Stop">
            <font>
                <Font name="Comfortaa Bold" size="24.0" />
            </font>
        </Button>
-       <Button id="buttonPause" layoutX="581.0" layoutY="70.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="98.0" text="Pause">
+       <Button id="buttonPause" fx:id="buttonPause" layoutX="581.0" layoutY="80.0" mnemonicParsing="false" prefHeight="49.0" prefWidth="98.0" text="Pause">
            <font>
                <Font name="Comfortaa Bold" size="22.0" />
            </font>

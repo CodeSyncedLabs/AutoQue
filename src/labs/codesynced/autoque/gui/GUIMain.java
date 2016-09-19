@@ -1,14 +1,23 @@
 package labs.codesynced.autoque.gui;
 
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Tooltip;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import labs.codesynced.autoque.AutoQue;
 import labs.codesynced.autoque.go.ShowTime;
+import labs.codesynced.autoque.gui.dialog.DialogConfirm;
 import labs.codesynced.autoque.toolkit.MonitorHelper;
+import labs.codesynced.autoque.toolkit.Resources;
 
 /**
  * @author Wylan Shoemaker - 9/16/2016
@@ -29,6 +38,10 @@ public class GUIMain
 	private FXMLLoader fxmlLoader;
 	private Scene scene;
 	private Stage stage;
+	@FXML
+	private Button buttonGo, buttonStop, buttonBack, buttonPause, buttonPlay;
+
+	private Image imageGo, imageStop, imageBack, imagePause, imagePlay;
 
 	public GUIMain(String name, boolean startCenter)
 	{
@@ -47,8 +60,43 @@ public class GUIMain
 
 		this.setupStage();
 		this.setupLayout();
+		this.setupButtons();
 		this.setupScene();
 		ShowTime.begin(this.stage);
+	}
+
+	private void setupButtons()
+	{
+		buttonGo = (Button) this.fxmlLoader.getNamespace().get("buttonGo");
+		buttonStop = (Button) this.fxmlLoader.getNamespace().get("buttonStop");
+		buttonBack = (Button) this.fxmlLoader.getNamespace().get("buttonBack");
+		buttonPause = (Button) this.fxmlLoader.getNamespace().get("buttonPause");
+		buttonPlay = (Button) this.fxmlLoader.getNamespace().get("buttonPlay");
+
+		imageGo = new Image(AutoQue.class.getResourceAsStream(Resources.ICON_RESOURCE_PATH + ""));
+		imageStop = new Image(AutoQue.class.getResourceAsStream(Resources.ICON_RESOURCE_PATH + "stop-1.png"));
+		imageBack = new Image(AutoQue.class.getResourceAsStream(Resources.ICON_RESOURCE_PATH + "previous.png"));
+		imagePause = new Image(AutoQue.class.getResourceAsStream(Resources.ICON_RESOURCE_PATH + "pause-1.png"));
+		imagePlay = new Image(AutoQue.class.getResourceAsStream(Resources.ICON_RESOURCE_PATH + "play-button-1.png"));
+
+		buttonGo.setGraphic(newImageView(buttonGo, imageGo));
+		buttonStop.setGraphic(newImageView(buttonStop, imageStop));
+		buttonBack.setGraphic(newImageView(buttonBack, imageBack));
+		buttonPause.setGraphic(newImageView(buttonPause, imagePause));
+		buttonPlay.setGraphic(newImageView(buttonPlay, imagePlay));
+	}
+
+	private ImageView newImageView(Button button, Image image)
+	{
+		ImageView view = new ImageView(image);
+		view.setFitHeight(button.getPrefHeight());
+		view.setFitWidth(button.getPrefWidth());
+		view.setPreserveRatio(true);
+		button.setTooltip(new Tooltip(button.getText()));
+		button.setText(null);
+		button.setCursor(Cursor.HAND);
+		button.setBackground(Background.EMPTY);
+		return view;
 	}
 
 	/**
@@ -87,7 +135,7 @@ public class GUIMain
 	protected void setupLayout() throws Exception
 	{
 		this.fxmlLoader = new FXMLLoader();
-		this.fxmlLoader.setLocation(AutoQue.class.getResource("gui/layout/LayoutGuiMain.fxml"));
+		this.fxmlLoader.setLocation(AutoQue.class.getResource(Resources.INTERNAL_GUI_PATH + "LayoutGuiMain.fxml"));
 
 		this.layout = this.fxmlLoader.load();
 		this.layout.autosize();
@@ -106,7 +154,7 @@ public class GUIMain
 
 	protected void closeStageEvent()
 	{
-		stage.setOnCloseRequest(event -> ShowTime.wrap(stage));
+		stage.setOnCloseRequest(event -> new DialogConfirm("Are you sure?", "Yes", "No"));
 	}
 
 	/**
