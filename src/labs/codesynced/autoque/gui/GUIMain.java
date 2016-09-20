@@ -73,7 +73,7 @@ public class GUIMain
 		buttonPause = (Button) this.fxmlLoader.getNamespace().get("buttonPause");
 		buttonPlay = (Button) this.fxmlLoader.getNamespace().get("buttonPlay");
 
-		imageGo = new Image(AutoQue.class.getResourceAsStream(Resources.ICON_RESOURCE_PATH + ""));
+		imageGo = new Image(AutoQue.class.getResourceAsStream(Resources.ICON_RESOURCE_PATH + "megaphone.png"));
 		imageStop = new Image(AutoQue.class.getResourceAsStream(Resources.ICON_RESOURCE_PATH + "stop-1.png"));
 		imageBack = new Image(AutoQue.class.getResourceAsStream(Resources.ICON_RESOURCE_PATH + "previous.png"));
 		imagePause = new Image(AutoQue.class.getResourceAsStream(Resources.ICON_RESOURCE_PATH + "pause-1.png"));
