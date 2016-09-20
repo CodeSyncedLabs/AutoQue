@@ -24,3 +24,5 @@
 
 # Please Note:
   AutoQue is being developed in our free time. We enjoy programming as a pastime, some of us are still in school and will not always be available to help, please do not take this in the wrong way. We LOVE user feedback. Our product can only survive with the help of the users. If you find any bugs, please report it on our issue tracker along with a way to reproduce it. 
+
+  AutoQue is being developed in Intellij IDEA and not the standard Eclipse IDE. This is so there is an ease of access as well as organization. We cannot garuntee that cloning this repository into an Eclipse project will work.
